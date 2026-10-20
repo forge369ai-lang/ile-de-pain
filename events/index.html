@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Events · île de païn, Knysna</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23F26B1D'/%3E%3Ctext x='32' y='42' font-family='Georgia' font-style='italic' font-size='26' text-anchor='middle' fill='%23fff'%3Eidp%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..700,0..100&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.phead .sun{right:-12%;top:-30%}
+/* year wheel */
+.year{padding:20px 0 clamp(70px,9vw,110px)}
+.months{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}
+@media (max-width:900px){.months{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:520px){.months{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.m{min-width:0;overflow-wrap:anywhere}
+.phead{overflow:hidden}
+.m{position:relative;border-radius:18px;background:var(--cream);padding:14px 10px 12px;min-height:118px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .2s}
+.m b{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.m span{font-family:var(--f-d);font-size:16px;line-height:1.1}
+.m.has{background:#fff;box-shadow:inset 0 0 0 1.5px var(--line)}
+.m.has:hover{transform:translateY(-4px);background:var(--ember);color:#fff}
+.m.has:hover b{color:#fff}
+.m.now{box-shadow:inset 0 0 0 2px var(--ember)}
+.m.now:after{content:"now";position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+.m.has:hover:after{color:#fff}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ember);display:inline-block;margin-right:6px}
+/* event features */
+.ev{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(50px,7vw,90px) 0;border-top:1px solid var(--line);scroll-margin-top:90px}
+.ev:nth-of-type(even) .art{order:2}
+@media (max-width:900px){.ev{grid-template-columns:1fr}.ev:nth-of-type(even) .art{order:0}}
+.art{position:relative;border-radius:999px 999px 34px 34px;min-height:clamp(320px,40vw,520px);overflow:hidden;display:grid;place-items:center;text-align:center;padding:40px}
+.art .big{font-family:var(--f-d);font-style:italic;font-weight:300;font-size:clamp(70px,10vw,150px);line-height:.85;letter-spacing:-.04em}
+.medal{position:absolute;right:7%;bottom:7%;width:clamp(110px,13vw,170px);aspect-ratio:1;border-radius:50%;object-fit:cover;border:7px solid #fff;box-shadow:0 24px 50px -20px rgba(43,30,22,.55);transform:rotate(-6deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.ev:hover .medal{transform:rotate(4deg) scale(1.06)}
+.medal.l{left:7%;right:auto;top:9%;bottom:auto;width:clamp(80px,9vw,120px);transform:rotate(8deg)}
+.art small{display:block;margin-top:18px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:12px}
+.ev .when{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--crust)}
+.ev h2{font-size:clamp(46px,6vw,92px);margin-top:12px}
+.ev p{color:var(--ink-2);font-size:clamp(18px,1.6vw,20px);margin-top:20px;max-width:46ch}
+.ev ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:8px}
+.ev li{display:flex;gap:12px;align-items:baseline;font-size:17px}
+.ev li:before{content:"✳";color:var(--ember);font-size:12px}
+.ev .ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+/* enquiry */
+.enq{background:var(--ember);color:#fff;border-radius:40px;padding:clamp(30px,5vw,70px);margin:40px 0 120px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px);scroll-margin-top:90px}
+@media (max-width:900px){.enq{grid-template-columns:1fr}}
+.enq h2{font-size:clamp(46px,6vw,92px)}
+.enq p{opacity:.9;margin-top:18px;font-size:18px;max-width:40ch}
+.enq form{display:grid;gap:12px}
+.enq label{display:grid;gap:6px;font-size:13px;font-weight:700;letter-spacing:.06em}
+.enq input,.enq select,.enq textarea{font:inherit;font-size:16px;border:0;border-radius:16px;padding:14px 16px;background:rgba(255,255,255,.95);color:var(--ink);width:100%}
+.enq textarea{min-height:110px;resize:vertical}
+.enq .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.enq button{justify-self:start;background:var(--ink);border-color:var(--ink);color:#fff}
+</style>
+</head>
+<body data-page="events">
+<section class="phead sky"><div class="sun" aria-hidden="true"></div><div class="wrap" style="position:relative">
+  <span class="eyebrow">Events</span>
+  <h1 class="split" style="margin-top:16px">Every season,<br>a <span class="it">reason.</span></h1>
+  <p class="rv">Festival dinners, Italian street parties, slow summer brunches and cakes for the biggest days of your life. Here's a year on the island.</p>
+</div></section>
+
+<section class="year"><div class="wrap">
+  <span class="eyebrow">A year on the island</span>
+  <div class="months" id="months" style="margin-top:18px"></div>
+</div></section>
+
+<main class="wrap">
+  <article class="ev" id="italy"><div class="art rv" style="background:linear-gradient(160deg,#E9F3EA,#FBE6E3)"><div><div class="big" style="color:#2E7D46">Italy<br><span style="color:#D6403A">in Town</span></div><small>Every March · Thesen Harbour Town</small></div><img class="medal" data-photo="pizza" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">March</span><h2>Italy in Town</h2><p>When the Knysna Street Fest turns Thesen Harbour Town Italian, we join the party. Bunting, pizza from the fire, green, white and red cookies, and a slice of Italy on the island.</p><ul><li>Wood-fired pizza</li><li>Italian-inspired bakes</li><li>Street-festival atmosphere</li></ul><div class="ctas"><a class="btn" href="https://www.instagram.com/iledepain/" target="_blank" rel="noopener">Dates on Instagram</a></div></div></article>
+
+  <article class="ev" id="mothers"><div class="art rv" style="background:linear-gradient(160deg,#FCE7EC,#FFF4E6)"><div><div class="big" style="color:#C2456B">Say it<br>with flowers</div><small>Every May · Mother's Day</small></div><img class="medal" data-photo="cakeslice" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">May</span><h2>Mother's Day</h2><p>Gorgeous bouquets in store, pastries she'll love and a table for breakfast. Treat Mom to something beautiful and delicious.</p><ul><li>Fresh bouquets in store</li><li>Gift boxes of bakes</li><li>Book breakfast early</li></ul><div class="ctas"><a class="btn fill" href="tel:+27443025705">Book a table</a></div></div></article>
+
+  <article class="ev" id="oyster"><div class="art rv" style="background:linear-gradient(160deg,#DCEBF5,#F4F7F9)"><div><div class="big" style="color:#2F5B7A">Oyster<br>Festival</div><small>Every July · Four-course dinner</small></div><img class="medal" data-photo="oysters" alt="" loading="lazy"><img class="medal l" data-photo="oysters2" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">July</span><h2>The finer side of the Oyster Festival</h2><p>An exclusive, beautifully curated four-course dinner that celebrates local flavours with our artisanal touch. Limited seats, and they go quickly.</p><ul><li>Four courses, built around the oyster</li><li>Vegetarian options available</li><li>Booking essential</li></ul><div class="ctas"><a class="btn fill" href="mailto:admin@iledepain.co.za?subject=Oyster%20Festival%20dinner">Ask about this year's dinner</a></div></div></article>
+
+  <article class="ev" id="brunch"><div class="art rv" style="background:var(--ember);color:#fff"><div><div class="big">Brunchy<br>Sundays</div><small>Summer season · Sundays 8am to 1pm</small></div><img class="medal" data-photo="frenchtoast" alt="" loading="lazy"><img class="medal l" data-photo="latte" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">Summer</span><h2>Brunchy Sundays</h2><p>In the summer season we open our doors on Sundays for long, slow brunches. The best way to end a holiday weekend on the island.</p><ul><li>Seasonal Sundays, 8am to 1pm</li><li>Selected holiday Mondays</li><li>Dates announced on Instagram</li></ul><div class="ctas"><a class="btn" href="https://www.instagram.com/iledepain/" target="_blank" rel="noopener">Follow for dates</a></div></div></article>
+
+  <article class="ev" id="spoilt"><div class="art rv" style="background:linear-gradient(160deg,#FDE3EF,#FFF1D9)"><div><div class="big" style="color:#C2185B">Spoilt</div><small>Sip · shop · spoil</small></div><img class="medal" data-photo="natas2" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">Festive season</span><h2>Spoilt Knysna Gift Fair</h2><p>Knysna's favourite gift fair is back, and you'll find île de païn there with fresh bread, flaky pastries and treats to give away.</p><ul><li>Peanut nougat and almond kisses</li><li>Breads and pastries</li><li>Gift-ready bakes</li></ul></div></article>
+
+  <article class="ev" id="cakes"><div class="art rv" style="background:linear-gradient(160deg,#FFF7EE,#F6E3E6)"><div><div class="big" style="color:var(--ember)">Your<br>cake</div><small>All year · Weddings &amp; celebrations</small></div><img class="medal" data-photo="weddingcake" alt="" loading="lazy"><img class="medal l" data-photo="weddingcake2" alt="" loading="lazy"></div>
+    <div class="rv"><span class="when">All year</span><h2>Wedding &amp; celebration cakes</h2><p>Our pastry team makes cakes for weddings, birthdays and every kind of celebration, styled for your day.</p><ul><li>Wedding cakes</li><li>Birthday and celebration cakes</li><li>Platters for events</li></ul><div class="ctas"><a class="btn fill" href="#enquire">Make an enquiry</a></div></div></article>
+
+  <section class="enq rv" id="enquire">
+    <div><span class="eyebrow" style="color:#FFE0C8">Plan something with us</span><h2 style="margin-top:12px">Let's make it <em>special.</em></h2><p>Cakes, private breakfasts, festival dinners or a big table for your group. Tell us a little and we'll get back to you.</p></div>
+    <form id="form">
+      <div class="row"><label>Your name<input name="name" required autocomplete="name"></label><label>Date<input name="date" type="date"></label></div>
+      <label>What's the occasion?<select name="type"><option>Wedding cake</option><option>Celebration cake</option><option>Group booking</option><option>Oyster Festival dinner</option><option>Something else</option></select></label>
+      <label>Tell us more<textarea name="msg" placeholder="Number of people, ideas, anything we should know"></textarea></label>
+      <button class="btn" type="submit">Send enquiry →</button>
+    </form>
+  </section>
+</main>
+
+<script src="/assets/photos.js"></script>
+<script src="/assets/site.js"></script>
+<script>
+(function(){
+document.querySelectorAll("img[data-photo]").forEach(i=>i.src=PHOTO(i.dataset.photo,600));
+const M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const EV={0:["Brunchy Sundays","#brunch"],1:["Brunchy Sundays","#brunch"],2:["Italy in Town","#italy"],4:["Mother's Day","#mothers"],6:["Oyster Festival","#oyster"],10:["Spoilt Gift Fair","#spoilt"],11:["Brunchy Sundays","#brunch"]};
+const now=+new Intl.DateTimeFormat("en-GB",{timeZone:"Africa/Johannesburg",month:"numeric"}).format(new Date())-1;
+document.getElementById("months").innerHTML=M.map((m,i)=>EV[i]?`<a class="m has rv${i===now?" now":""}" href="${EV[i][1]}"><b>${m}</b><span><i class="dot"></i>${EV[i][0]}</span></a>`:`<div class="m rv${i===now?" now":""}"><b>${m}</b><span style="color:var(--ink-2);font-size:14px">Cakes &amp; bakes</span></div>`).join("");
+IDP.observe(document.getElementById("months"));
+document.getElementById("form").addEventListener("submit",e=>{e.preventDefault();const f=new FormData(e.target);
+ const body=`Hi île de païn,%0D%0A%0D%0AName: ${encodeURIComponent(f.get("name"))}%0D%0ADate: ${encodeURIComponent(f.get("date")||"Flexible")}%0D%0AOccasion: ${encodeURIComponent(f.get("type"))}%0D%0A%0D%0A${encodeURIComponent(f.get("msg")||"")}`;
+ location.href=`mailto:admin@iledepain.co.za?subject=${encodeURIComponent("Enquiry: "+f.get("type"))}&body=${body}`});
+})();
+</script>
+</body>
+</html>

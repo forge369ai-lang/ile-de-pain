@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Gallery · île de païn, Knysna</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23F26B1D'/%3E%3Ctext x='32' y='42' font-family='Georgia' font-style='italic' font-size='26' text-anchor='middle' fill='%23fff'%3Eidp%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..700,0..100&family=Manrope:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+.phead .sun{right:-12%;top:-30%}
+.filters{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--flour) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.filters .wrap{display:flex;gap:8px;padding-top:86px;padding-bottom:14px;overflow-x:auto;scrollbar-width:none}
+.filters .wrap::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;cursor:pointer;transition:all .2s}
+.chip[aria-pressed="true"]{background:var(--ember);border-color:var(--ember);color:#fff}
+.chip .n{opacity:.6;margin-left:6px;font-weight:500}
+.grid{columns:3 320px;column-gap:16px;padding:36px 0 120px}
+.tile{break-inside:avoid;margin:0 0 16px;display:block;width:100%;border:0;padding:0;background:var(--oat);border-radius:24px;overflow:hidden;cursor:zoom-in;position:relative}
+.tile:nth-child(5n+2){border-radius:999px 999px 24px 24px}
+.tile:nth-child(7n+4){border-radius:24px 24px 999px 999px}
+.tile img{width:100%;height:auto;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.05)}
+.tile .lbl{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.92);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;opacity:0;transform:translateY(8px);transition:all .3s}
+.tile:hover .lbl,.tile:focus-visible .lbl{opacity:1;transform:none}
+.tile.hide{display:none}
+.ig{border-radius:34px;background:var(--cream);padding:clamp(30px,5vw,60px);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:120px}
+.ig h2{font-size:clamp(40px,5vw,72px)}
+</style>
+</head>
+<body data-page="gallery">
+<section class="phead sky"><div class="sun" aria-hidden="true"></div><div class="wrap" style="position:relative">
+  <span class="eyebrow">Gallery</span>
+  <h1 class="split" style="margin-top:16px">Life on<br>the <span class="it">island.</span></h1>
+  <p class="rv">Bread from the fire, plates from the kitchen, the people who make it and the terrace under the red umbrellas.</p>
+</div></section>
+<div class="filters"><div class="wrap" id="chips" role="toolbar" aria-label="Filter photos"></div></div>
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="ig rv"><div><span class="eyebrow">Every day on Instagram</span><h2 style="margin-top:12px">See what's on the <span class="it">shelves today.</span></h2></div><a class="btn fill" href="https://www.instagram.com/iledepain/" target="_blank" rel="noopener">Follow @iledepain</a></div>
+</main>
+<script src="/assets/photos.js"></script>
+<script src="/assets/site.js"></script>
+<script>
+(function(){
+const cats=["All",...new Set(PHOTOS.map(p=>p.cat))];let cur="All";
+const chips=document.getElementById("chips"),grid=document.getElementById("grid");
+chips.innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c==="All"}" data-c="${c}">${c}<span class="n">${c==="All"?PHOTOS.length:PHOTOS.filter(p=>p.cat===c).length}</span></button>`).join("");
+grid.innerHTML=PHOTOS.map((p,i)=>`<button class="tile rv" data-i="${i}" data-c="${p.cat}" aria-label="Open photo: ${p.alt}"><img src="${p.src.replace("w=1400","w=900")}" alt="${p.alt}" loading="lazy"><span class="lbl">${p.cat}</span></button>`).join("");
+IDP.observe(grid);
+chips.addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;cur=b.dataset.c;chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));grid.querySelectorAll(".tile").forEach(t=>t.classList.toggle("hide",cur!=="All"&&t.dataset.c!==cur))});
+grid.addEventListener("click",e=>{const t=e.target.closest(".tile");if(!t)return;const vis=PHOTOS.filter(p=>cur==="All"||p.cat===cur);IDP.lightbox(vis,vis.indexOf(PHOTOS[+t.dataset.i]))});
+})();
+</script>
+</body>
+</html>
